@@ -10,7 +10,13 @@ from sqlalchemy import create_engine, Column, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-DATABASE_URL = "mysql+pymysql://root:zjrwtx@localhost/jwtdemo"
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -38,7 +44,7 @@ app.add_middleware(
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -174,3 +180,11 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
 async def logout(token: str = Depends(oauth2_scheme)):
     token_blacklist.append(token)
     return {"message": "Successfully logged out"}
+
+class UsernameCheck(BaseModel):
+    username: str
+
+@app.post("/check_user")
+async def check_user(user: UsernameCheck, db: Session = Depends(get_db)):
+    db_user = get_user(db, user.username)
+    return {"exists": db_user is not None}

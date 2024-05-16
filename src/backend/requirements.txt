@@ -3,3 +3,4 @@ passlib
 bcrypt
 sqlalchemy
 pymysql
+python-dotenv
