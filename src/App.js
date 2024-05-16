@@ -1,29 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
-import HomePage from './HomePage';
-import ProtectedRoute from './ProtectedRoute';
-import LogoutPage from './LogoutPage';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import ProtectedPage from './components/ProtectedPage';
 
-function App() {
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/" />;
+};
+
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<LogoutPage />} />
+        <Route path="/" element={<Login />} />
         <Route
-          path="/"
+          path="/protected"
           element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
+            <PrivateRoute>
+              <ProtectedPage />
+            </PrivateRoute>
           }
         />
       </Routes>
     </Router>
   );
-}
+};
 
-export default App;
+export default App

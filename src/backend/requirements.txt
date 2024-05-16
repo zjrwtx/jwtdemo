@@ -1,6 +1,10 @@
 python-jose[cryptography]
 passlib
-bcrypt
+
 sqlalchemy
 pymysql
 python-dotenv
+alibabacloud_dysmsapi20170525==2.0.24
+alibabacloud-tea-console
+redis
+bcrypt==4.0.1
