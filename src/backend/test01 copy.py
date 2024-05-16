@@ -6,19 +6,18 @@ from jose import JWTError, jwt
 from typing import Union, Optional
 from datetime import datetime, timedelta, timezone
 from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
-# 配置 CORS 中间件
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 允许所有前端应用程序的地址
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # 允许所有 HTTP 方法
-    allow_headers=["*"],  # 允许所有 HTTP 头
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-# 配置密码哈希
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# OAuth2 密码令牌
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
@@ -36,7 +35,9 @@ fake_users_db = {
     }
 }
 
-# Pydantic 模型
+# 黑名单列表
+token_blacklist = []
+
 class User(BaseModel):
     username: str
     email: Optional[str] = None
@@ -59,21 +60,17 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     username: Optional[str] = None
 
-# 验证密码
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
-# 获取密码哈希
 def get_password_hash(password):
     return pwd_context.hash(password)
 
-# 获取用户
 def get_user(db, username: str):
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
 
-# 用户认证
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
     if not user:
@@ -82,7 +79,6 @@ def authenticate_user(fake_db, username: str, password: str):
         return False
     return user
 
-# 创建访问令牌
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:
@@ -93,8 +89,13 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-# 获取当前用户
 async def get_current_user(token: str = Depends(oauth2_scheme)):
+    if token in token_blacklist:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has been revoked",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -113,13 +114,11 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
     return user
 
-# 获取当前活跃用户
 async def get_current_active_user(current_user: User = Depends(get_current_user)):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
-# 登录端点
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
@@ -135,12 +134,10 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
-# 获取当前用户信息
 @app.get("/users/me/", response_model=User)
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 
-# 注册端点
 @app.post("/register", response_model=User)
 async def register(user: UserCreate):
     if user.username in fake_users_db:
@@ -152,3 +149,8 @@ async def register(user: UserCreate):
     user_in_db = UserInDB(**user.dict(), hashed_password=hashed_password)
     fake_users_db[user.username] = user_in_db.dict()
     return user_in_db
+
+@app.post("/logout")
+async def logout(token: str = Depends(oauth2_scheme)):
+    token_blacklist.append(token)
+    return {"message": "Successfully logged out"}
