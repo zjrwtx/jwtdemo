@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link, } from 'react-router-dom';
 import Login from './components/Login';
 import ProtectedPage from './components/ProtectedPage';
+import LogoutPage from './components/Logout';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -31,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route path="/Products" element={<Products />} />
         <Route
           path="/protected"
