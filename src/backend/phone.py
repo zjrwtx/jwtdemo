@@ -84,8 +84,8 @@ class VerifyCode(BaseModel):
 # Helper functions
 def send_sms(phone: str, code: str):
     send_sms_request = dysmsapi_20170525_models.SendSmsRequest(
-        sign_name='正经人王同学',
-        template_code='SMS_466840026',
+        sign_name='阿里云短信测试',
+        template_code='SMS_154950909',
         phone_numbers=phone,
         template_param=f'{{"code":"{code}"}}'
     )

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate(); // 使用useNavigate钩子
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
   const [step, setStep] = useState(1);
 
   const handleSendCode = async () => {
     try {
-      await axios.post(`http://localhost:8000/send_verification_code`, { phone });
+      await axios.post(`${process.env.REACT_APP_API_URL}/send_verification_code`, { phone });
       setStep(2);
     } catch (error) {
       console.error('Error sending code:', error);
@@ -17,9 +18,9 @@ const Login = () => {
 
   const handleVerifyCode = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/verify_code`, { phone, code });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/verify_code`, { phone, code });
       localStorage.setItem('token', response.data.access_token);
-      window.location.href = '/protected';
+      navigate('/protected'); // 使用navigate进行页面跳转
     } catch (error) {
       console.error('Error verifying code:', error);
     }
