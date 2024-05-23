@@ -6,7 +6,6 @@ import Dashboard from './Dashboard';
 
 const HomePage = () => <div>欢迎来到主页</div>;
 
-
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
   return token ? children : <Navigate to="/" />;
@@ -29,15 +28,15 @@ function App() {
     }
   }, []);
 
-  const closeModal = () => {
-    setShowModal(false);
+  const handleLoginSuccess = () => {
     setIsAuthenticated(true);
+    setShowModal(false);
   };
 
   return (
     <Router>
       <div className="App">
-        {showModal && <LoginModal onClose={closeModal} />}
+        {showModal && <LoginModal onLoginSuccess={handleLoginSuccess} />}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

@@ -17,7 +17,7 @@ import {
   Typography
 } from '@mui/material';
 
-const LoginModal = ({ onClose }) => {
+const LoginModal = ({ onLoginSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -44,8 +44,8 @@ const LoginModal = ({ onClose }) => {
       });
 
       localStorage.setItem('token', response.data.access_token);
-      onClose();
-      navigate('/');
+      onLoginSuccess();  // 登录成功后调用传递的回调函数
+     
     } catch (error) {
       setErrorMessage('登录失败，请检查手机号和密码');
     }
@@ -80,7 +80,7 @@ const LoginModal = ({ onClose }) => {
   };
 
   return (
-    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
+    <Dialog open maxWidth="xs" fullWidth>
       <DialogTitle>{isLogin ? '登录' : '注册'}</DialogTitle>
       <DialogContent>
         <DialogContentText>
