@@ -137,7 +137,7 @@ const LoginModal = ({ onClose }) => {
           <Typography variant="body2" color="textSecondary">
             关注我们的公众号
           </Typography>
-          <img src="/path/to/your/qr-code.png" alt="二维码" style={{ width: 120, height: 120 }} />
+          <img src="/gzh.jpg" alt="二维码" style={{ width: 160, height: 160 }} />
         </Box>
       </DialogContent>
     </Dialog>
