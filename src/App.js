@@ -1,27 +1,48 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
-import HomePage from './HomePage';
-import ProtectedRoute from './ProtectedRoute';
-import LogoutPage from './LogoutPage';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import axios from 'axios';
+import LoginModal from './LoginModal';
+import Dashboard from './Dashboard';
+
+const HomePage = () => <div>欢迎来到主页</div>;
+
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/" />;
+};
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get('http://localhost:8000/users/me', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => setIsAuthenticated(true))
+      .catch(() => setShowModal(true));
+    } else {
+      setShowModal(true);
+    }
+  }, []);
+
+  const closeModal = () => {
+    setShowModal(false);
+    setIsAuthenticated(true);
+  };
+
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/logout" element={<LogoutPage />} />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <div className="App">
+        {showModal && <LoginModal onClose={closeModal} />}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        </Routes>
+      </div>
     </Router>
   );
 }

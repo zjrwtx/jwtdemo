@@ -1,9 +1,11 @@
+# 修改后的后端代码
+
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from passlib.context import CryptContext
 from jose import JWTError, jwt
-from typing import Union, Optional
+from typing import Optional
 from datetime import datetime, timedelta, timezone
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, Column, String, Boolean
@@ -21,11 +23,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
 class UserModel(Base):
     __tablename__ = "users"
     username = Column(String(50), primary_key=True, index=True)
     email = Column(String(100), unique=True, index=True)
-    full_name = Column(String(100), index=True)
     hashed_password = Column(String(100))
     disabled = Column(Boolean, default=False)
 
@@ -44,7 +46,6 @@ app.add_middleware(
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -53,8 +54,7 @@ token_blacklist = []
 
 class User(BaseModel):
     username: str
-    email: Optional[str] = None
-    full_name: Optional[str] = None
+    email: Optional[EmailStr] = None
     disabled: Optional[bool] = None
 
 class UserInDB(User):
@@ -62,8 +62,7 @@ class UserInDB(User):
 
 class UserCreate(BaseModel):
     username: str
-    email: str
-    full_name: Optional[str] = None
+    email: EmailStr
     password: str
 
 class Token(BaseModel):
@@ -164,11 +163,15 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
             status_code=400,
             detail="Username already registered",
         )
+    if len(user.password) < 8:
+        raise HTTPException(
+            status_code=400,
+            detail="Password must be at least 8 characters long",
+        )
     hashed_password = get_password_hash(user.password)
     db_user = UserModel(
         username=user.username,
         email=user.email,
-        full_name=user.full_name,
         hashed_password=hashed_password,
     )
     db.add(db_user)
