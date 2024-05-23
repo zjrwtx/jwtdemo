@@ -1,47 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
+const HomePage = ({ user }) => {
   const [loggedOut, setLoggedOut] = useState(false);
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     setLoggedOut(true);
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://127.0.0.1:8000/users/me/', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
   if (loggedOut) {
-    return <Navigate to="/logout" />;
-  }
-
-  if (!user) {
-    return <div></div>;
+    return <Navigate to="/" />;
   }
 
   return (
     <div>
-      <h1>这是受路由保护的主页面啦</h1>
-      <h2>Welcome, {user.username}</h2>
-      <p>Email: {user.email}</p>
-      <button onClick={handleLogout}>Logout</button>
+      {!user ? (
+        <div><h1>登录之后才可以看到个人数据啦</h1></div>
+      ) : (
+        <div>
+          <h2>Welcome, {user.username}</h2>
+          <p>Email: {user.email}</p>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      )}
     </div>
   );
 };

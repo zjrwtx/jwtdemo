@@ -5,6 +5,8 @@ import LoginModal from './LoginModal';
 import Dashboard from './Dashboard';
 import HomePage from './HomePage';
 
+// const HomePage = () => <div>欢迎来到主页</div>;
+
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
   return token ? children : <Navigate to="/" />;
@@ -13,7 +15,6 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -21,28 +22,16 @@ function App() {
       axios.get('http://localhost:8000/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
-        setIsAuthenticated(true);
-        setUser(response.data);
-      })
+      .then(() => setIsAuthenticated(true))
       .catch(() => setShowModal(true));
     } else {
       setShowModal(true);
     }
   }, []);
 
-  const handleLoginSuccess = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/users/me', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setIsAuthenticated(true);
-      setUser(response.data);
-      setShowModal(false);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setShowModal(false);
   };
 
   return (
@@ -50,7 +39,7 @@ function App() {
       <div className="App">
         {showModal && <LoginModal onLoginSuccess={handleLoginSuccess} />}
         <Routes>
-          <Route path="/" element={<HomePage user={user} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
       </div>
