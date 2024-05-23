@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useEffect,useState } from 'react';
 import axios from 'axios';
 
-const HomePage = () => {
+const ProtectedRoute = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loggedOut, setLoggedOut] = useState(false);
-
-  const handleLogout = () => {
-    setLoggedOut(true);
-  };
-
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -28,22 +23,13 @@ const HomePage = () => {
     fetchUser();
   }, []);
 
-  if (loggedOut) {
-    return <Navigate to="/logout" />;
-  }
-
   if (!user) {
-    return <div></div>;
+    return <Navigate to="/login" />;
   }
+  else
+    return children;
 
-  return (
-    <div>
-      <h1>这是受路由保护的主页面啦</h1>
-      <h2>Welcome, {user.username}</h2>
-      <p>Email: {user.email}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  );
 };
 
-export default HomePage;
+
+export default ProtectedRoute;
