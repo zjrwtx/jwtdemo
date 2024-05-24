@@ -4,6 +4,7 @@ import axios from 'axios';
 import LoginModal from './LoginModal';
 import Dashboard from './Dashboard';
 import HomePage from './HomePage';
+import MainPage from './testkimi';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -48,8 +49,11 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <MainPage/>
         {showModal && <LoginModal onLoginSuccess={handleLoginSuccess} />}
         <Routes>
+      
+          {/* <Route path='/kimi' element={<MainPage />} /> */}
           <Route path="/" element={<HomePage user={user} />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         </Routes>
