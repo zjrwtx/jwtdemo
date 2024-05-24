@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import MainPage from './beforehomepage';
 
 const HomePage = ({ user }) => {
   const [loggedOut, setLoggedOut] = useState(false);
@@ -17,9 +18,10 @@ const HomePage = ({ user }) => {
   return (
     <div>
       {!user ? (
-        <div><h1>登录之后才可以看到个人数据啦</h1></div>
+        <MainPage/>
       ) : (
         <div>
+          <MainPage/>
           <h2>Welcome, {user.username}</h2>
           <p>Email: {user.email}</p>
           <button onClick={handleLogout}>Logout</button>
