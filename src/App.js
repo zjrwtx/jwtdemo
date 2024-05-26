@@ -102,6 +102,7 @@ const App = () => {
           <Button color="inherit" href="/">题目生成</Button>
           <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">思维导图生成</Button>
           <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">学习规划</Button>
+          <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">联系与官网</Button>
           {isLoggedIn && <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">联系与官网</Button>}
         </Toolbar>
       </AppBar>
