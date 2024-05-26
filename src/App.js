@@ -100,9 +100,9 @@ const App = () => {
             不挂科AI
           </Typography>
           <Button color="inherit" href="/">题目生成</Button>
-          <Button color="inherit" href="/">思维导图生成</Button>
-          <Button color="inherit" href="/">学习规划</Button>
-          {isLoggedIn && <Button color="inherit" href="/dashboard">个人中心</Button>}
+          <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">思维导图生成</Button>
+          <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">学习规划</Button>
+          {isLoggedIn && <Button color="inherit" href="https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs">联系与官网</Button>}
         </Toolbar>
       </AppBar>
       <Container>
@@ -119,7 +119,7 @@ const App = () => {
                     <li>更智能的题目生成算法</li>
                     <li>更快速的内容生成</li>
                     <li>更加友好的用户界面</li>
-                    <li>用户注册登录与数据存储等</li>
+                    <li>学习规划、超长论文、生成ppt等</li>
                   </ul>
                   更多新的功能与建议欢迎联系开发者微信：18718250072
                 </DialogContentText>
@@ -132,7 +132,7 @@ const App = () => {
             </Dialog>
             <Box my={4}>
               <Typography variant="h4" component="h1" gutterBottom>
-                题目生成
+                题目生成（报一丝 王同学还在期末复习阶段 所以暂时开发比较慢这样 请谅解）
               </Typography>
               <Typography>
                 不挂科AI：上传一个或多个PDF或PPTX格式的专业课件来生成您想要的题目类型、数量及其答案解释等，然后直接复制生成结果到您的笔记或其他地方！
