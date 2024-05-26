@@ -81,7 +81,7 @@ const LoginModal = ({ onLoginSuccess }) => {
 
   return (
     <Dialog open maxWidth="xs" fullWidth>
-      <DialogTitle>{isLogin ? '登录' : '注册'}</DialogTitle>
+      <DialogTitle>{isLogin ? '登录不挂科AI' : '注册不挂科AI'}</DialogTitle>
       <DialogContent>
         <DialogContentText>
           {isLogin ? '请输入您的手机号和密码进行登录。' : '请输入您的手机号、邮箱和密码进行注册。'}
@@ -135,7 +135,7 @@ const LoginModal = ({ onLoginSuccess }) => {
         </form>
         <Box mt={4} textAlign="center">
           <Typography variant="body2" color="textSecondary">
-            关注我们的公众号
+            关注微信公众号：正经人王同学 获取最新产品消息
           </Typography>
           <img src="/gzh.jpg" alt="二维码" style={{ width: 160, height: 160 }} />
         </Box>

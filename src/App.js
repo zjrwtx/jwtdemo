@@ -97,10 +97,12 @@ const App = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
-            MyApp
+            不挂科AI
           </Typography>
-          <Button color="inherit" href="/">Home</Button>
-          {isLoggedIn && <Button color="inherit" href="/dashboard">Dashboard</Button>}
+          <Button color="inherit" href="/">题目生成</Button>
+          <Button color="inherit" href="/">思维导图生成</Button>
+          <Button color="inherit" href="/">学习规划</Button>
+          {isLoggedIn && <Button color="inherit" href="/dashboard">个人中心</Button>}
         </Toolbar>
       </AppBar>
       <Container>
