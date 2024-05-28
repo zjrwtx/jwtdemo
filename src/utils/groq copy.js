@@ -1,4 +1,3 @@
-
 import { Groq } from "groq-sdk"
 import axios from 'axios';
 const GROQ_API ="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"
@@ -17,7 +16,7 @@ export const requestToGroqAi = async(originalUrl) => {
         jsonResponse = await axios.get(readerUrl, { headers: { "Accept": "application/json" } });
     } catch (error) {
         console.error('Error fetching the JSON response:', error);
-        return null; // Ensure it returns null on error
+        return;
     }
 
     if (jsonResponse.status === 200) {
@@ -37,14 +36,12 @@ export const requestToGroqAi = async(originalUrl) => {
                 model: "Llama3-70b-8192"
             })
         
-            return reply.choices[0].message.content;
+            return reply.choices[0].message.content
          
         } catch (error) {
             console.error('Error generating the summary:', error);
-            return null; // Ensure it returns null on error
         }
     } else {
         console.error('Failed to fetch JSON data:', jsonResponse.status);
-        return null; // Ensure it returns null on error
     }
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { requestToGroqAi } from './utils/groq';
 import ReactMarkdown from 'react-markdown';
 import { TextField, Button, Container, Typography, Box, Paper, CircularProgress, Snackbar, Alert } from "@mui/material";
@@ -9,18 +10,12 @@ function NoteNotes() {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [error, setError] = useState(""); // State to handle errors
 
   const handleSubmit = async () => {
     setLoading(true);
-    setError(""); // Clear any previous errors
     const ai = await requestToGroqAi(document.getElementById("content").value);
     console.log(ai);
-    if (!ai) {
-      setError("生成阅读笔记失败了，有可能是链接错误或文章太长了，再试试这样"); // Set error message if no data returned
-    } else {
-      setData(ai);
-    }
+    setData(ai);
     setLoading(false);
   };
 
@@ -62,11 +57,6 @@ function NoteNotes() {
             {loading ? <CircularProgress size={24} /> : 'loopy加速生成笔记'}
           </Button>
         </Box>
-        {error && (
-          <Typography color="error" sx={{ mt: 2 }}>
-            {error}
-          </Typography>
-        )}
         {data && (
           <Paper elevation={3} sx={{ p: 2, mt: 4, backgroundColor: "#ffffff", position: 'relative' }}>
             <ReactMarkdown>{data}</ReactMarkdown>
