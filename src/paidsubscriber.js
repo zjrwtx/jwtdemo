@@ -44,7 +44,7 @@ const SubscriptionPlans = () => (
             所有功能每天有限次使用且接入最强AI模型GPT40和不挂科AI自研算法
             </Typography>
             <Button variant="contained" color="primary" fullWidth>
-              付款订阅
+              付款订阅(待上线)
             </Button>
           </CardContent>
         </StyledCard>
@@ -62,7 +62,7 @@ const SubscriptionPlans = () => (
             所有功能无限次使用且接入最强AI模型GPT40和不挂科AI自研算法
             </Typography>
             <Button variant="contained" color="primary" fullWidth>
-              付费订阅
+              付费订阅(待上线)
             </Button>
           </CardContent>
         </StyledCard>
