@@ -123,7 +123,7 @@ const App = () => {
             </Dialog>
             <Box my={4}>
               <Typography variant="h4" component="h1" gutterBottom>
-                题目生成（报一丝 王同学还在期末复习阶段 所以暂时开发比较慢这样 请谅解）
+                题目生成
               </Typography>
               <Typography>
                 不挂科AI：上传一个或多个PDF或PPTX格式的专业课件来生成您想要的题目类型、数量及其答案解释等，然后直接复制生成结果到您的笔记或其他地方！
