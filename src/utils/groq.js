@@ -1,8 +1,10 @@
 
 import { Groq } from "groq-sdk"
 import axios from 'axios';
-const GROQ_API ="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"
+// const GROQ_API ="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"
 
+
+const GROQ_API = process.env.REACT_APP_GROQ_API;
 //just for experiment
 const groq = new Groq({
   apiKey: GROQ_API,
@@ -34,7 +36,8 @@ export const requestToGroqAi = async(originalUrl) => {
                     role: "system",
                     content: "请你详细总结用户的原文为中文的阅读笔记，主要分一句话总结、重要要点、启发灵感、转发到朋友圈等社交媒体的文案和热门标签，并使用中文"
                 }],
-                model: "Llama3-70b-8192"
+                model: "mixtral-8x7b-32768",
+                // max_tokens:32768
             })
         
             return reply.choices[0].message.content;
