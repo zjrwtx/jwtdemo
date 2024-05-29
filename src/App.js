@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Layout, Menu, Button } from 'antd';
 import { useMediaQuery } from 'react-responsive';
-import { AiOutlineHome, AiOutlineFileText, AiOutlineProfile, AiOutlineOrderedList, AiOutlineAppstoreAdd } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineFileText, AiOutlineProfile, AiFillWechat , AiOutlineOrderedList, AiOutlineAppstoreAdd } from 'react-icons/ai';
 
 import './output.css';
 import HomePage from './HomePage'; 
@@ -22,6 +22,7 @@ const App = () => {
     { key: '/mindmap', icon: <AiOutlineProfile />, label: '思维导图生成', path: '/mindmap' },
     { key: '/Watchmindmap', icon: <AiOutlineOrderedList />, label: '实时编辑思维导图', path: '/Watchmindmap' },
     { key: '/SubscriptionPlans', icon: <AiOutlineAppstoreAdd />, label: '升级为vip', path: '/SubscriptionPlans' },
+    { key: '/contactandwebsite', icon: < AiFillWechat />, label: '联系与官网', path: 'https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs?from=from_copylink' },
   ];
 
   return (
