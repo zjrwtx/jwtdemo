@@ -10,8 +10,6 @@ import NoteNotes from './notenotes';
 import SubscriptionPlans from './paidsubscriber';
 import Mindmap from './mindmap';
 import Watchmindmap from './watchmindmap';
-import Examkeypoints from './examkeypoints';
-import brandLogo from './logo192.png';
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -31,19 +29,33 @@ const App = () => {
   return (
     <Router>
       <Layout>
+        {/* <Header className="header">
+          <div className="logo" />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ flexGrow: 1 }}>
+              <h1 style={{ color: 'white' }}>不挂科AI:让大学生一天拿下一门期末</h1>
+            </div>
+            {!isMobile && (
+              <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+                {menuItems.map(item => (
+                  <Menu.Item key={item.key} icon={item.icon}>
+                    <Link to={item.path}>{item.label}</Link>
+                  </Menu.Item>
+                ))}
+              </Menu>
+            )}
+          </div>
+        </Header> */}
         <Layout>
           {!isMobile && (
             <Sider width={200} className="site-layout-background">
-            <div style={{ display: 'flex', alignItems: 'center', padding: '16px', backgroundColor: '#ffffff', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }}>
-              <img src={brandLogo} alt="Brand Logo" style={{ width: '40px', marginRight: '8px' }} />
-              <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#000000' }}>不挂科AI</span>
-            </div>
               <Menu mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%', borderRight: 0 }}>
                 {menuItems.map(item => (
                   <Menu.Item key={item.key} icon={item.icon}>
                     <Link to={item.path}>{item.label}</Link>
                   </Menu.Item>
                 ))}
+                
               </Menu>
             </Sider>
           )}
@@ -55,7 +67,6 @@ const App = () => {
                 <Route path="/mindmap" element={<Mindmap />} />
                 <Route path="/Watchmindmap" element={<Watchmindmap />} />
                 <Route path="/SubscriptionPlans" element={<SubscriptionPlans />} />
-                <Route path="/examkeypoints" element={<Examkeypoints />} />
               </Routes>
             </Content>
           </Layout>
