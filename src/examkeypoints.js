@@ -10,11 +10,11 @@ const { Title, Paragraph, Link } = Typography;
 const Mindmap = () => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
-  const [mindmapresult, setResult] = useState('');
+  const [examkeypointsresult, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const savedResult = localStorage.getItem('mindmapresult');
+    const savedResult = localStorage.getItem('examkeypointsresult');
     if (savedResult) {
       setResult(savedResult);
     }
@@ -44,7 +44,7 @@ const Mindmap = () => {
       });
       const resultText = response.data.responses.map(res => `${res.filename}: ${res.api_response}`).join('\n\n');
       setResult(resultText);
-      localStorage.setItem('mindmapresult', resultText);
+      localStorage.setItem('examkeypointsresult', resultText);
     } catch (error) {
       message.error('Failed to extract text from file!');
     } finally {
@@ -53,7 +53,7 @@ const Mindmap = () => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(mindmapresult).then(() => {
+    navigator.clipboard.writeText(examkeypointsresult).then(() => {
       message.success('已经复制生成的考试重点大纲了！');
     }).catch(() => {
       message.error('Failed to copy text.');
@@ -64,7 +64,7 @@ const Mindmap = () => {
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       <Title level={2} style={{ textAlign: 'center', marginBottom: '30px' }}>考试重点大纲生成</Title>
       <Paragraph style={{ textAlign: 'center', marginBottom: '40px' }}>
-          上传一个或多个PDF或PPTX格式的专业课件来生成您的带星标的考试重点大纲
+          上传一个或多个PDF或PPTX格式的专业课件来生成您的考试重点大纲
       </Paragraph>
 
       <Upload
@@ -87,7 +87,7 @@ const Mindmap = () => {
       </Button>
 
       <TextArea
-        value={mindmapresult}
+        value={examkeypointsresult}
         readOnly
         rows={10}
         style={{ marginBottom: '20px', fontSize: '0.875rem' }}
