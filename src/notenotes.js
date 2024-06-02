@@ -33,7 +33,7 @@ function NoteNotes() {
     <Container maxWidth="md" sx={{ backgroundColor: "#f5f5f5", p: 3, borderRadius: 2 }}>
       <Box my={4} textAlign="center">
         <Typography variant="h4" color="primary" gutterBottom>
-          发文章链接，1分钟内免费出一篇阅读笔记
+          发文章链接  免费出一篇可分享到社交平台的阅读笔记
         </Typography>
         <Typography variant="h4" color="primary" gutterBottom>
           微信公众号：正经人王同学
@@ -59,7 +59,7 @@ function NoteNotes() {
             sx={{ mt: 2 }}
             disabled={loading}
           >
-            {loading ? <CircularProgress size={24} /> : 'loopy加速生成笔记'}
+            {loading ? <CircularProgress size={24} /> : '帮我生成笔记吧'}
           </Button>
         </Box>
         {error && (

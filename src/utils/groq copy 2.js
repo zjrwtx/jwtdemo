@@ -1,16 +1,15 @@
 
-
+import { Groq } from "groq-sdk"
 import axios from 'axios';
+// const GROQ_API ="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"
 
-import OpenAI from 'openai';
-const OpenAI_API=process.env.REACT_APP_OpenAI_API;
-const base_url=process.env.REACT_APP_base_url;
-const  client = new OpenAI({
-    apiKey:OpenAI_API, // This is the default and can be omitted
-    baseURL:base_url,
-    dangerouslyAllowBrowser: true
-});
-  
+
+const GROQ_API = process.env.REACT_APP_GROQ_API;
+//just for experiment
+const groq = new Groq({
+  apiKey: GROQ_API,
+  dangerouslyAllowBrowser: true
+})
 
 
 export const requestToGroqAi = async(originalUrl) => {
@@ -28,7 +27,7 @@ export const requestToGroqAi = async(originalUrl) => {
         const markdownContent = `文档名称: ${jsonData.data.title}\n文档原地址: ${jsonData.data.url}\n${jsonData.data.content}`;
 
         try {
-            const reply = await  client.chat.completions.create({
+            const reply = await groq.chat.completions.create({
                 messages: [{
                     role: "user",
                     content: "一定要输出位中文"+markdownContent
@@ -37,7 +36,7 @@ export const requestToGroqAi = async(originalUrl) => {
                     role: "system",
                     content: "请你详细总结用户的原文为中文的阅读笔记，主要分一句话总结、重要要点、启发灵感、转发到朋友圈等社交媒体的文案和热门标签，并使用中文"
                 }],
-                model: "deepseek-chat",
+                model: "mixtral-8x7b-32768",
                 // max_tokens:32768
             })
         
