@@ -19,7 +19,7 @@ const App = () => {
     formData.append('file', file);
 
     setUploading(true);
-    axios.post('http://localhost:8000/upload/', formData, {
+    axios.post('https://snuhatuzvlnh.gzg.sealos.run/upload/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
