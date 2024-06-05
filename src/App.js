@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Layout, Menu, Button } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import { AiOutlineHome, AiOutlineFileText, AiOutlineProfile, AiFillWechat , AiOutlineOrderedList, AiOutlineAppstoreAdd } from 'react-icons/ai';
-
+import { FaVideo } from "react-icons/fa";
 import './output.css';
 import HomePage from './HomePage'; 
 import NoteNotes from './notenotes';
@@ -12,6 +12,7 @@ import Mindmap from './mindmap';
 import Watchmindmap from './watchmindmap';
 import Examkeypoints from './examkeypoints';
 import brandLogo from './logo192.png';
+import Videotopdf from './Videotopdf';
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -23,6 +24,7 @@ const App = () => {
     { key: '/examkeypoints', icon: <AiOutlineFileText />, label: '考试重点大纲生成', path: '/examkeypoints'},
     { key: '/mindmap', icon: <AiOutlineProfile />, label: '思维导图生成', path: '/mindmap' },
     { key: '/Watchmindmap', icon: <AiOutlineOrderedList />, label: '实时编辑思维导图', path: '/Watchmindmap' },
+    { key: '/videotopdf', icon: <FaVideo />, label: '视频转pdf图文', path: '/videotopdf'},
     { key: '/notenotes', icon: <AiOutlineFileText />, label: '文章笔记生成', path: '/notenotes' },
     { key: '/SubscriptionPlans', icon: <AiOutlineAppstoreAdd />, label: '升级为vip', path: '/SubscriptionPlans' },
     { key: '/contactandwebsite', icon: < AiFillWechat />, label: '联系与官网', path: 'https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs?from=from_copylink' },
@@ -54,6 +56,7 @@ const App = () => {
                 <Route path="/notenotes" element={<NoteNotes />} />
                 <Route path="/mindmap" element={<Mindmap />} />
                 <Route path="/Watchmindmap" element={<Watchmindmap />} />
+                <Route path="/Videotopdf" element={<Videotopdf />} />
                 <Route path="/SubscriptionPlans" element={<SubscriptionPlans />} />
                 <Route path="/examkeypoints" element={<Examkeypoints />} />
               </Routes>
