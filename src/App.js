@@ -13,6 +13,7 @@ import Watchmindmap from './watchmindmap';
 import Examkeypoints from './examkeypoints';
 import brandLogo from './logo192.png';
 import Videotopdf from './Videotopdf';
+import Supportus from './Supportus';
 
 const { Header, Content, Sider, Footer } = Layout;
 
@@ -26,6 +27,7 @@ const App = () => {
     { key: '/Watchmindmap', icon: <AiOutlineOrderedList />, label: '实时编辑思维导图', path: '/Watchmindmap' },
     { key: '/videotopdf', icon: <FaVideo />, label: '视频转pdf图文', path: '/videotopdf'},
     { key: '/notenotes', icon: <AiOutlineFileText />, label: '文章笔记生成', path: '/notenotes' },
+    { key: '/supportus', icon: <AiOutlineFileText />, label: '捐赠支持产品', path: '/supportus' },
     { key: '/SubscriptionPlans', icon: <AiOutlineAppstoreAdd />, label: '升级为vip', path: '/SubscriptionPlans' },
     { key: '/contactandwebsite', icon: < AiFillWechat />, label: '联系与官网', path: 'https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs?from=from_copylink' },
   ];
@@ -57,6 +59,7 @@ const App = () => {
                 <Route path="/mindmap" element={<Mindmap />} />
                 <Route path="/Watchmindmap" element={<Watchmindmap />} />
                 <Route path="/Videotopdf" element={<Videotopdf />} />
+                <Route path="/supportus" element={<Supportus />} />
                 <Route path="/SubscriptionPlans" element={<SubscriptionPlans />} />
                 <Route path="/examkeypoints" element={<Examkeypoints />} />
               </Routes>
