@@ -33,7 +33,7 @@ const App = () => {
                 hoverable
                 cover={<img alt="example" src="./gzh.jpg" />}
               >
-                <Card.Meta title="其他支付" description="关注微信公众号：正经人王同学 了解最新产品进展" />
+                <Card.Meta title="关注微信公众号" description="关注微信公众号：正经人王同学 了解最新产品进展" />
               </Card>
             </Col>
           </Row>
