@@ -64,7 +64,7 @@ const App = () => {
     formData.append('typeoftopic', typeOfTopic);
     formData.append('numoftopic', numOfTopic);
     try {
-      const response = await axios.post('https://snuhatuzvlnh.gzg.sealos.run/topics', formData, {
+      const response = await axios.post(process.env.REACT_APP_backend_API_URL+'topics', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

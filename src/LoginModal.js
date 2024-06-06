@@ -25,7 +25,7 @@ const LoginModal = ({ onLoginSuccess }) => {
 
   const handleLogin = async (data) => {
     try {
-      const userCheckResponse = await axios.post('https://snuhatuzvlnh.gzg.sealos.run/check_user', {
+      const userCheckResponse = await axios.post(process.env.REACT_APP_backend_API_URL+'/check_user', {
         username: data.username,
       });
 
@@ -34,7 +34,7 @@ const LoginModal = ({ onLoginSuccess }) => {
         return;
       }
 
-      const response = await axios.post('https://snuhatuzvlnh.gzg.sealos.run/token', qs.stringify({
+      const response = await axios.post(process.env.REACT_APP_backend_API_URL+'/token', qs.stringify({
         username: data.username,
         password: data.password,
       }), {
@@ -58,7 +58,7 @@ const LoginModal = ({ onLoginSuccess }) => {
     }
 
     try {
-      await axios.post('https://snuhatuzvlnh.gzg.sealos.run/register', {
+      await axios.post(process.env.REACT_APP_backend_API_URL+'/register', {
         username: data.username,
         email: data.email,
         password: data.password,

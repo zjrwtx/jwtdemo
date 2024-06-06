@@ -37,7 +37,7 @@ const Mindmap = () => {
     });
 
     try {
-      const response = await axios.post('https://snuhatuzvlnh.gzg.sealos.run/mindmap', formData, {
+      const response = await axios.post(process.env.REACT_APP_backend_API_URL+'/mindmap', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

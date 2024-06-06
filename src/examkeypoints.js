@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const { TextArea } = Input;
 const { Title, Paragraph, Link } = Typography;
-
+// const apiurl=process.env.REACT_APP_backend_API_URL;
 const Mindmap = () => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
@@ -37,7 +37,7 @@ const Mindmap = () => {
     });
 
     try {
-      const response = await axios.post('https://snuhatuzvlnh.gzg.sealos.run/examkeypoints', formData, {
+      const response = await axios.post(process.env.REACT_APP_backend_API_URL+'/examkeypoints', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
