@@ -14,20 +14,27 @@ import Examkeypoints from './examkeypoints';
 import brandLogo from './logo192.png';
 import Videotopdf from './Videotopdf';
 import Supportus from './Supportus';
-
+import { PiExamBold } from "react-icons/pi";
+import { GoCommentDiscussion } from "react-icons/go";
+import { PiStudentBold } from "react-icons/pi";
+import Course from './chattocourse';
 const { Header, Content, Sider, Footer } = Layout;
 
 const App = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const menuItems = [
+    { key: '/chattocourse', icon: <PiStudentBold />, label: '我的课程（开发中）', path: '/chattocourse' },
     { key: '/', icon: <AiOutlineHome />, label: '题目生成', path: '/' },
+    { key: '/examinationpaper', icon: <PiExamBold />, label: '试卷生成（开发中）', path: '/examinationpaper' },
     { key: '/examkeypoints', icon: <AiOutlineFileText />, label: '考试重点大纲生成', path: '/examkeypoints'},
     { key: '/mindmap', icon: <AiOutlineProfile />, label: '思维导图生成', path: '/mindmap' },
     { key: '/Watchmindmap', icon: <AiOutlineOrderedList />, label: '实时编辑思维导图', path: '/Watchmindmap' },
     { key: '/videotopdf', icon: <FaVideo />, label: '视频转pdf图文', path: '/videotopdf'},
     { key: '/notenotes', icon: <AiOutlineFileText />, label: '文章笔记生成', path: '/notenotes' },
+    { key: '/community', icon: < GoCommentDiscussion />, label: '分享社区（开发中）', path: '/community' },
     { key: '/supportus', icon: <AiOutlineFileText />, label: '捐赠支持产品', path: '/supportus' },
+
     { key: '/SubscriptionPlans', icon: <AiOutlineAppstoreAdd />, label: '升级为vip', path: '/SubscriptionPlans' },
     { key: '/contactandwebsite', icon: < AiFillWechat />, label: '联系与官网', path: 'https://n4xpgfy3fn.feishu.cn/docx/CyXEdI0LOoAQfCxv7kSc21m8nYs?from=from_copylink' },
   ];
@@ -55,6 +62,7 @@ const App = () => {
             <Content style={{ padding: 24, margin: 0, minHeight: 280 }}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/chattocourse" element={<Course />} />
                 <Route path="/notenotes" element={<NoteNotes />} />
                 <Route path="/mindmap" element={<Mindmap />} />
                 <Route path="/Watchmindmap" element={<Watchmindmap />} />
