@@ -20,7 +20,7 @@ const App = () => {
 
   // 定义当前版本的更新内容
   const currentUpdateContent = `
-  第1.1版更新通知
+  第1.3版更新通知
   `;
 
   useEffect(() => {
@@ -107,9 +107,9 @@ const App = () => {
                 <DialogContentText>
                   欢迎使用最新版本的不挂科AI 更新版本介绍：
                   <ul>
-                    <li>1.新增功能：课件文件生成考试重点大纲</li>
+                    <li>1.新增功能：考试试卷生成、内容分享社区</li>
                     <li>2.优化页面UI设计 更加简洁美观</li>
-                    <li>3.更换了新的产品logo 寓意一直加分！！！</li>
+                    <li>3.修复已知bug</li>
                   </ul>
                   更多新的功能与建议欢迎联系开发者微信：18718250072
                 </DialogContentText>
