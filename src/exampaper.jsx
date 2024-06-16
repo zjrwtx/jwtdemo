@@ -18,11 +18,11 @@ const App = () => {
   const [files, setFiles] = useState([]);
   const [typeOfTopic, setTypeOfTopic] = useState([]);
   const [numOfTopic, setNumOfTopic] = useState('');
-  const [result, setResult] = useState('');
+  const [paperresult, setResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const savedResult = localStorage.getItem('result');
+    const savedResult = localStorage.getItem('paperresult');
     if (savedResult) {
       setResult(savedResult);
     }
@@ -54,7 +54,7 @@ const App = () => {
       });
       const resultText = response.data.responses.map(res => `${res.filename}: ${res.api_response}`).join('\n\n');
       setResult(resultText);
-      localStorage.setItem('result', resultText); // 保存结果到 localStorage
+      localStorage.setItem('paperresult', resultText); // 保存结果到 localStorage
     } catch (error) {
       message.error('Failed to extract text from file!');
     } finally {
@@ -63,7 +63,7 @@ const App = () => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(result).then(() => {
+    navigator.clipboard.writeText(paperresult).then(() => {
       message.success('已经复制生成的试卷了！');
     }).catch(() => {
       message.error('Failed to copy text.');
@@ -113,7 +113,7 @@ const App = () => {
           </Form.Item>
         </Form>
         <TextArea
-          value={result}
+          value={paperresult}
           readOnly
           rows={10}
           style={{ marginTop: '20px' }}
