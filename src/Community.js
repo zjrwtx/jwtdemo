@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/feedback');
+      const response = await axios.get(process.env.REACT_APP_backend_API_URL+'/feedback');
       setFeedbacks(response.data);
     } catch (error) {
       message.error('获取反馈失败，请重试');
@@ -25,7 +25,7 @@ const App = () => {
 
   const onFinish = async (values) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/feedback', values);
+      const response = await axios.post(process.env.REACT_APP_backend_API_URL+'/feedback', values);
       if (response.status === 200) {
         message.success('反馈提交成功');
         form.resetFields();
