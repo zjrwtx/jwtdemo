@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div style={{ padding: 50 }}>
-      <h1>产品反馈</h1>
+      <h1>分享您生成的学习内容或进行产品反馈与建议等都可以！但会有内容审核与监控的</h1>
       <Form form={form} onFinish={onFinish} layout="vertical">
         <Form.Item
           name="name"
@@ -58,8 +58,8 @@ const App = () => {
         </Form.Item>
         <Form.Item
           name="feedback"
-          label="反馈内容"
-          rules={[{ required: true, message: '请输入您的反馈' }]}
+          label="内容"
+          rules={[{ required: true, message: '请输入您的内容' }]}
         >
           <TextArea rows={4} />
         </Form.Item>
@@ -69,7 +69,7 @@ const App = () => {
           </Button>
         </Form.Item>
       </Form>
-      <h2 style={{ marginTop: 50 }}>反馈列表</h2>
+      <h2 style={{ marginTop: 50 }}>社区内容列表</h2>
       <List
         itemLayout="vertical"
         size="large"
