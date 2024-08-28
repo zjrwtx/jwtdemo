@@ -4,3 +4,4 @@ bcrypt
 sqlalchemy
 pymysql
 python-dotenv
+PyPDF2
