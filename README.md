@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+1. **项目概述**：
+   - 项目名称：不挂科AI前端
+   - 项目描述：这是一个基于React的Web应用程序，为学生们提供各种AI驱动的功能，如题目生成、试卷生成、思维导图生成、视频转PDF、笔记生成、社区分享等。该应用程序旨在帮助学生更有效地学习和准备考试。
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2. **功能列表**：
+   - 题目生成：根据用户输入生成详细且高质量的题目。
+   - 试卷生成：根据用户输入生成详细且高质量的试卷。
+   - 思维导图生成：根据用户输入生成详细且高质量的思维导图。
+   - 视频转PDF：将视频转换为包含文本的PDF。
+   - 笔记生成：对文章进行笔记并生成详细摘要。
+   - 社区分享：与其他用户分享和讨论。
+   - 支持与捐赠：通过捐赠支持项目的开发。
 
-## Available Scripts
+3. **快速开始**：
+   - 克隆仓库：`git clone https://github.com/your-username/your-repo.git`
+   - 安装依赖：`npm install`
+   - 运行应用：`npm start`
+   - 应用将在 `http://localhost:3000` 可用。
 
-In the project directory, you can run:
+4. **贡献指南**：
+   - Fork仓库。
+   - 创建新分支：`git checkout -b feature/AmazingFeature`
+   - 提交更改：`git commit -m 'Add amazing feature'`
+   - 推送到分支：`git push origin feature/AmazingFeature`
+   - 打开拉取请求。
 
-### `npm start`
+5. **许可证**：
+   - 本项目根据MIT许可证授权 - 详情请查看LICENSE文件。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+6. **联系方式**：
+   - 对于任何问题或建议，请通过 [your-email@example.com](mailto:your-email@example.com) 联系我们。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+7. **支持**：
+   - 如果你喜欢这个项目，考虑通过捐赠支持我们。您的支持将帮助我们继续开发和改进项目。您可以通过我们的网站捐赠，或联系我们了解更多信息。
 
-### `npm test`
+8. **致谢**：
+   - 本项目使用各种库和工具，包括React、Ant Design、Python等。我们感谢所有贡献者和维护者这些库和工具的辛勤工作和奉献。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+9. **免责声明**：
+   - 本项目仅用于教育目的。我们对使用本项目的任何不当使用或损坏不承担任何责任。
