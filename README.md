@@ -1,4 +1,4 @@
-
+# 此项目不再维护 接下来所有的ai教育功能都迁移至https://github.com/zjrwtx/Wise-Will-agent
 
 ![image](https://github.com/user-attachments/assets/42a3c9a7-a66d-493e-9efa-0c537bc3a86f)
 
